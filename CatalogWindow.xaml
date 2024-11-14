@@ -1,0 +1,84 @@
+﻿<Window x:Class="Vinyl_store.CatalogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vinyl_store"
+        WindowState="Maximized"
+        WindowStyle="None"
+        mc:Ignorable="d"
+        Title="CatalogWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                      BorderBrush="{TemplateBinding BorderBrush}"
+                      BorderThickness="{TemplateBinding BorderThickness}"
+                      CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10" Cursor="">
+                <Button Content="" Width="36" Height="30" Margin="5" Click="ProfileButton_Click" BorderBrush="{x:Null}" Cursor="Hand" Foreground="{x:Null}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/1250689.png"/>
+                    </Button.Background>
+
+                </Button>
+                <Button Content="" Width="36" Height="30" Margin="5" Click="CartButton_Click" BorderBrush="{x:Null}" Cursor="Hand" Foreground="{x:Null}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/shoppingcart_80945.png"/>
+                    </Button.Background>
+                </Button>
+                <TextBox x:Name="SearchTextBox" Width="255" Height="20" Margin="5"/>
+                <Button Content="" Width="27" Height="30" Margin="5" Click="SearchButton_Click" BorderBrush="{x:Null}" Cursor="Hand" Foreground="{x:Null}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/711319.png"/>
+                    </Button.Background>
+                </Button>
+                <ComboBox  x:Name="SortComboBox" Width="165" Height="24" SelectionChanged="SortComboBox_SelectionChanged" Background="{x:Null}" BorderBrush="Black" Cursor="Hand"  >
+                    <ComboBoxItem Content="Порядок: по умолчанию" Tag="default"/>
+                    <ComboBoxItem Content="Цена: по возрастанию" Tag="price_asc"/>
+                    <ComboBoxItem Content="Цена: по убыванию" Tag="price_desc"/>
+                    <ComboBoxItem Content="Название: А—Я" Tag="name_asc"/>
+                    <ComboBoxItem Content="Название: Я—А" Tag="name_desc"/>
+                    <ComboBoxItem Content="Порядок: сперва новые" Tag="newest"/>
+                    <ComboBoxItem Content="Порядок: сперва старые" Tag="oldest"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <ComboBox  x:Name="GenreComboBox" Width="95" Height="25" Margin="5" SelectionChanged="FilterComboBox_SelectionChanged" Cursor="Hand" BorderBrush="Black" Background="{x:Null}">
+                    <ComboBoxItem Content="Жанр" IsEnabled="False"/>
+                </ComboBox>
+                <ComboBox  x:Name="StatusComboBox" Width="95" Height="25" Margin="5" SelectionChanged="FilterComboBox_SelectionChanged">
+                    <ComboBoxItem Content="Статус" IsEnabled="False"/>
+                </ComboBox>
+                <ComboBox  x:Name="CountryComboBox" Width="95" Height="25" Margin="5" SelectionChanged="FilterComboBox_SelectionChanged">
+                    <ComboBoxItem Content="Страна" IsEnabled="False"/>
+                </ComboBox>
+                <ComboBox  x:Name="StyleComboBox" Width="95" Height="25" Margin="5" SelectionChanged="FilterComboBox_SelectionChanged">
+                    <ComboBoxItem Content="Стиль" IsEnabled="False"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <StackPanel x:Name="SelectedFiltersPanel" Orientation="Horizontal" Margin="5"/>
+                <Button x:Name="ClearFiltersButton" Content="Очистить все" Width="100" Height="30" Margin="5" Style="{StaticResource RoundedButtonStyle}" Click="ClearFiltersButton_Click" Visibility="Collapsed" Background="{x:Null}" BorderBrush="Black" Cursor="Hand"/>
+            </StackPanel>
+            <TextBlock x:Name="ResultsCountTextBlock" Margin="10" Visibility="Collapsed"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <WrapPanel x:Name="ProductsWrapPanel" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</Window>
